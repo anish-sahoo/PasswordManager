@@ -1,8 +1,9 @@
+from interface import show
 import customtkinter as ctk
 import sqlite3
 
 def logIn():
-
+    global root
     #constructor and title
     root = ctk.CTk()
     root.title("Login")
@@ -29,7 +30,7 @@ def logIn():
     passwordInput.grid(row=1, column=1, sticky='ew', padx=(0,20))
 
     global errorMessageLabel
-    errorMessageLabel = ctk.CTkLabel(root, text="a", font=ctk.CTkFont(size=15, slant='italic'), text_color='RED')
+    errorMessageLabel = ctk.CTkLabel(root, text="", font=ctk.CTkFont(size=15, slant='italic'), text_color='RED')
     errorMessageLabel.grid(row=2, column=0, columnspan=2, sticky='ew', padx=10)
 
     loginButton = ctk.CTkButton(root, 230, 60, text="Login", font=ctk.CTkFont('monospace',size=25), command=enter)
@@ -53,14 +54,22 @@ def enter():
         errorMessageLabel.configure(text="Username or password cannot be EMPTY")
         return
 
-    print(user_name + "\n" + password)
+    print(user_name + " " + password)
 
     connection = sqlite3.connect("database.sqlite")
     cursor = connection.cursor()
 
+    #search for the user in users table
     cursor.execute("SELECT * FROM users")
     result = cursor.fetchall()
     print(result)
-
+    connection.commit()
+    connection.close()
+    
     if (user_name,password) in result:
         print('success')
+        global root
+        root.destroy()
+        show(user_name, password)
+    else: 
+        print('failure')
