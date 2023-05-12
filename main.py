@@ -13,7 +13,6 @@ for i in range(2):
     print('.')
     time.sleep(1)
 
-
 def createNewUser():
     answer = input("Do you want to create a new user? Y/N: ")
     user_name = "EXIT EXIT"
@@ -42,7 +41,6 @@ def createNewUser():
             else:# user_name != '' and password != '':
                 break
     return user_name, password
-
 
 if len(items) == 0:
     print("No users exist.\n")
