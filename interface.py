@@ -127,4 +127,4 @@ def createGUI(uname, fields):
 def copyBtn(item):
     print(f'copied {item}')
 
-show('anish','asahoo')
+#show('anish','asahoo')
