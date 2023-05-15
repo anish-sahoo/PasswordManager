@@ -116,15 +116,34 @@ def createGUI(uname, fields):
     scrollframe = ScrollableLabelButtonFrame(master=root, width=770, command=copyBtn, corner_radius=0)
     scrollframe.grid(row=1, column=0, sticky='nsew', padx=10, columnspan=3)
 
-    addItemButton = ctk.CTkButton(root, text='Add Item', font=ctk.CTkFont('monospace',size=25),)
+    addItemButton = ctk.CTkButton(root, text='Add Item', font=ctk.CTkFont('monospace',size=25), command=add)
     addItemButton.grid(row=2, column=0, padx=20, pady=20, sticky='ewns')
 
     for i in range(10):
-        scrollframe.add_item(f"itemabcdef1234ghijklmnop@emailid.com",f"password*#1234{i}")
+        scrollframe.add_item(f"itemabcdef{i}234ghijklmnop@emailid.com",f"password*#1234{i}")
 
     root.mainloop()
 
 def copyBtn(item):
     print(f'copied {item}')
 
+def add():
+    window2 = ctk.CTk()
+    window2.geometry('600x600')
+    window2.grid_columnconfigure((0),weight=1)
+    window2.grid_columnconfigure((1),weight=3)
+    window2.grid_rowconfigure((0,1),weight=1)
+    
+    label1 = ctk.CTkLabel(window2, text="Username")
+    label1.grid(row=0, column=0, sticky='ewns')
+
+    label2 = ctk.CTkLabel(window2, text='Password')
+    label2.grid(row=1, column=0, sticky='ewns')
+
+    entry1 = ctk.CTkTextbox(window2)
+    entry1.grid(row=0, column=1, sticky='ewns')
+
+    entry2 = ctk.CTkTextbox(window2)
+    entry2.grid(row=1, column=1, sticky='ewns')
+    window2.mainloop()
 #show('anish','asahoo')
