@@ -129,21 +129,31 @@ def copyBtn(item):
 
 def add():
     window2 = ctk.CTk()
-    window2.geometry('600x600')
+    window2.geometry('800x250')
     window2.grid_columnconfigure((0),weight=1)
     window2.grid_columnconfigure((1),weight=3)
-    window2.grid_rowconfigure((0,1),weight=1)
+    window2.grid_rowconfigure((0,1,2),weight=1)
     
-    label1 = ctk.CTkLabel(window2, text="Username")
-    label1.grid(row=0, column=0, sticky='ewns')
+    label1 = ctk.CTkLabel(window2, text="Username", height=20, font=ctk.CTkFont('monospace',size=20))
+    label1.grid(row=0, column=0, sticky='ewns', pady=10)
 
-    label2 = ctk.CTkLabel(window2, text='Password')
-    label2.grid(row=1, column=0, sticky='ewns')
+    label2 = ctk.CTkLabel(window2, text='Password', height=20, font=ctk.CTkFont('monospace',size=20))
+    label2.grid(row=1, column=0, sticky='ewns', pady=10)
 
-    entry1 = ctk.CTkTextbox(window2)
-    entry1.grid(row=0, column=1, sticky='ewns')
+    entry1 = ctk.CTkTextbox(window2, height=20, font=ctk.CTkFont('monospace',size=20))
+    entry1.grid(row=0, column=1, sticky='ewns', pady=10, padx=10)
 
-    entry2 = ctk.CTkTextbox(window2)
-    entry2.grid(row=1, column=1, sticky='ewns')
+    entry2 = ctk.CTkTextbox(window2, height=20, font=ctk.CTkFont('monospace',size=20))
+    entry2.grid(row=1, column=1, sticky='ewns', pady=10, padx=10)
+
+    add_btn = ctk.CTkButton(window2, text='Add', font=ctk.CTkFont('monospace',size=25), command=insert)
+    add_btn.grid(row=2, column=0, sticky='ew', columnspan=2, padx=50)
+
+    def insert():
+        if str(entry1.get()).replace(' ', '') != '' and str(entry2.get()).replace(' ', '') != '':
+            print('inserting')
+
     window2.mainloop()
+
+# Used only for quick checking
 #show('anish','asahoo')
