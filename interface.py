@@ -103,6 +103,21 @@ class ScrollableLabelButtonFrame(ctk.CTkScrollableFrame):
                 self.button2_list.remove(button2)
                 self.button0_list.remove(button0)
                 return
+    
+    def remove_all(self):
+        for label, label2, button, button2, button0 in zip(self.label_list, self.label2_list, self.button_list, self.button2_list, self.button0_list):
+            label.destroy()
+            label2.destroy()
+            button.destroy()
+            button2.destroy()
+            button0.destroy()
+
+            self.label_list.remove(label)
+            self.label2_list.remove(label2)
+            self.button_list.remove(button)
+            self.button2_list.remove(button2)
+            self.button0_list.remove(button0)
+            return
 
 def createGUI(uname, fields):
     root = ctk.CTk()
@@ -116,7 +131,7 @@ def createGUI(uname, fields):
     scrollframe = ScrollableLabelButtonFrame(master=root, width=770, command=copyBtn, corner_radius=0)
     scrollframe.grid(row=1, column=0, sticky='nsew', padx=10, columnspan=3)
 
-    addItemButton = ctk.CTkButton(root, text='Add Item', font=ctk.CTkFont('monospace',size=25), command=add)
+    addItemButton = ctk.CTkButton(root, text='Add Item', font=ctk.CTkFont('monospace',size=25), command=lambda:add(uname))
     addItemButton.grid(row=2, column=0, padx=20, pady=20, sticky='ewns')
 
     for i in range(10):
@@ -127,7 +142,11 @@ def createGUI(uname, fields):
 def copyBtn(item):
     print(f'copied {item}')
 
-def add():
+def add(username):
+    print(username)
+    gui()
+    
+def gui():
     window2 = ctk.CTk()
     window2.geometry('800x250')
     window2.grid_columnconfigure((0),weight=1)
@@ -140,20 +159,25 @@ def add():
     label2 = ctk.CTkLabel(window2, text='Password', height=20, font=ctk.CTkFont('monospace',size=20))
     label2.grid(row=1, column=0, sticky='ewns', pady=10)
 
-    entry1 = ctk.CTkTextbox(window2, height=20, font=ctk.CTkFont('monospace',size=20))
+    entry1 = ctk.CTkEntry(window2, height=20, font=ctk.CTkFont('monospace',size=20))
     entry1.grid(row=0, column=1, sticky='ewns', pady=10, padx=10)
 
-    entry2 = ctk.CTkTextbox(window2, height=20, font=ctk.CTkFont('monospace',size=20))
+    entry2 = ctk.CTkEntry(window2, height=20, font=ctk.CTkFont('monospace',size=20))
     entry2.grid(row=1, column=1, sticky='ewns', pady=10, padx=10)
+
+
+    def insert():
+        if str(entry1.get()).replace(' ', '') != '' and str(entry2.get()).replace(' ', '') != '':
+            unme = entry1.get()
+            pwd = entry2.get()
+            print('inserting ' + unme + ' and '+ pwd + ' into passwords')
+            window2.destroy()
+
 
     add_btn = ctk.CTkButton(window2, text='Add', font=ctk.CTkFont('monospace',size=25), command=insert)
     add_btn.grid(row=2, column=0, sticky='ew', columnspan=2, padx=50)
 
-    def insert():
-        if str(entry1.get()).replace(' ', '') != '' and str(entry2.get()).replace(' ', '') != '':
-            print('inserting')
-
     window2.mainloop()
 
 # Used only for quick checking
-#show('anish','asahoo')
+show('anish','asahoo')
