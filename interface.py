@@ -64,7 +64,7 @@ class ScrollableLabelButtonFrame(ctk.CTkScrollableFrame):
         
         true_uname = item1
         if len(item1) > 32:
-            display_uname = item1[0:26] + '...'
+            true_uname = item1[0:26] + '...'
 
         true_pwd = item2
         if len(item2) > 32:
@@ -211,4 +211,4 @@ def add(username, fields):
 
 
 # Used only for quick checking
-show('anish','asahoo')
+#show('anish','asahoo')
