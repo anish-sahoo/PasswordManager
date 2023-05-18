@@ -49,8 +49,8 @@ if len(items) == 0:
 
     cursor.execute("CREATE TABLE users(username, password)")
     cursor.execute("INSERT INTO users VALUES (?,?)",(username,password))
-    
     connection.commit()
+    print('Run the program again...')
 else:
     print('Users found, starting GUI...')
     connection.commit()

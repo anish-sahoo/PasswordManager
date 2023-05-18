@@ -14,8 +14,8 @@ def show(username, password):
 
     q1 = cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='passwords';")
     items = q1.fetchall()
-    print(items)
-    print('in show')
+    #print(items)
+    #print('in show')
     if len(items) > 0:
         fields = getResults(username, password)
         createGUI(username, fields)
@@ -29,7 +29,7 @@ def getResults(uname, pwd):
     connection = sqlite3.connect("database.sqlite")
     cursor = connection.cursor()
 
-    print('reached results')
+    #print('reached results')
     #q2 = cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='passwords'")
     q2 = cursor.execute("SELECT * FROM passwords WHERE user ='"+uname+"';").fetchall()
     #result = q2.fetchall()
@@ -63,11 +63,11 @@ class ScrollableLabelButtonFrame(ctk.CTkScrollableFrame):
             return False
         
         true_uname = item1
-        if len(item1) > 32:
-            true_uname = item1[0:26] + '...'
+        if len(item1) > 25:
+            true_uname = str(item1[0:25]) + '...'
 
         true_pwd = item2
-        if len(item2) > 32:
+        if len(item2) > 28:
             true_pwd = item2[0:26] + '...'
 
 

@@ -54,7 +54,6 @@ def enter():
         errorMessageLabel.configure(text="Username or password cannot be EMPTY")
         return
 
-    print(user_name + " " + password)
 
     connection = sqlite3.connect("database.sqlite")
     cursor = connection.cursor()
@@ -62,7 +61,7 @@ def enter():
     #search for the user in users table
     cursor.execute("SELECT * FROM users")
     result = cursor.fetchall()
-    print(result)
+    #print(result)
     connection.commit()
     connection.close()
     
