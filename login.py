@@ -22,7 +22,7 @@ def logIn():
     label2.grid(row=1, column=0,  padx=(20,20))
 
     global usernameInput
-    usernameInput = ctk.CTkTextbox(root, 250, 40, font=ctk.CTkFont('monospace',size=25))
+    usernameInput = ctk.CTkEntry(root, 250, 40, font=ctk.CTkFont('monospace',size=25))
     usernameInput.grid(row=0,column=1, sticky='ew', padx=(0,20))
 
     global passwordInput
@@ -40,10 +40,10 @@ def logIn():
 
 def enter():
     errorMessageLabel.configure(text="")
-    user_name = str(usernameInput.get(1.0, 'end-1c'))
+    user_name = str(usernameInput.get())
     password = str(passwordInput.get())#1.0, 'end-1c'))
 
-    usernameInput.delete(1.0,'end-1c')
+    usernameInput.delete(0, ctk.END)
     passwordInput.delete(0, ctk.END)#1.0, 'end-1c')
 
     if ' ' in user_name or ' ' in password:
@@ -72,4 +72,6 @@ def enter():
         root.destroy()
         show(user_name, password)
     else: 
+        errorMessageLabel.configure(text="Username does not exist")
+
         print('failure')

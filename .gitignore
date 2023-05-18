@@ -1,2 +1,5 @@
 database.sqlite
 __pycache__/
+build/
+dist/
+main.spec
