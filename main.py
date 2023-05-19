@@ -38,7 +38,7 @@ def createNewUser():
                 print("Username cannot contain spaces!")
             elif ' ' in password:
                 print("Password cannot contain spaces!")
-            else:# user_name != '' and password != '':
+            else:
                 break
     return user_name, password
 
