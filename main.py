@@ -40,6 +40,9 @@ def createNewUser():
                 print("Password cannot contain spaces!")
             else:
                 break
+    else:
+        print('See you next time.')
+        exit(0)
     return user_name, password
 
 if len(items) == 0:
